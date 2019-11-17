@@ -1,0 +1,26 @@
+{
+  "name": "ekazuki-shearch-engine",
+  "version": "0.0.1",
+  "description": "Little scherach engine for filter my favorites pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shearch",
+    "engine"
+  ],
+  "author": "Ekazuki",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.2",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.7.11"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
+  }
+}
