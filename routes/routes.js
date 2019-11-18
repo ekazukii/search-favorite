@@ -28,7 +28,28 @@ module.exports = function (app) {
 
     ItemManager.find(query, function(result) {
       console.log(result)
-      res.render("search", {results: result, querys: query});
+      res.render("search.ejs", {results: result, querys: query});
     })
   })
+
+  app.get("/addFav", function(req, res) {
+    res.render('addFav.ejs');
+  });
+
+  app.post('/addFav', function(req, res) {
+    var url = req.body.url;
+    var genre = req.body.genre;
+    var site = req.body.site;
+    var tags = req.body.tags;
+
+    if (url && genre && site && tags)
+    {
+      var tagsArray = tags.split(' ');
+      var values = {url: url, genre: genre, site: site, tags: tagsArray}
+      ItemManager.addItem(values, function(id) {
+        console.log('Un site a été ajouté id: '+id);
+        res.render('addFav.ejs', {success: true})
+      })
+    }
+  });
 }

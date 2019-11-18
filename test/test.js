@@ -22,7 +22,7 @@ describe("Mocha + Chai Test assert", function() {
       });
 
       it("Should add an item", function(done) {
-        ItemManager.addItem(genre, site, tags, url, function(id) {
+        ItemManager.addItem({genre: genre, site: site, tags: tags, url: url}, function(id) {
           itemId = id;
           done();
         });
