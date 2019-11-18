@@ -2,12 +2,15 @@
 
 const express = require('express');
 const app = express();
+app.set('view engine', 'ejs');
+app.use('/public', express.static(__dirname + "/public"));
+
 const appRoutes = require('./routes/routes.js')(app);
 var mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/shearch-engine', { useNewUrlParser: true,  useUnifiedTopology: true  }, function(err) {
+var options = {useNewUrlParser: true, useUnifiedTopology: true}
+mongoose.connect('mongodb://localhost/search-engine', options, function(err) {
   if (err) { throw err; }
-  console.log("Connecté à la base de données 'shearch-engine'");
+  console.log("Connecté à la base de données 'search-engine'");
 
   app.listen(3000, function() {
     console.log('serveur lancé sur le port 3000');
@@ -18,11 +21,5 @@ mongoose.connect('mongodb://localhost/shearch-engine', { useNewUrlParser: true, 
 });
 
 function startServeur() {
-  console.log("serveur opérationnel")
-  //var ItemFile = require("./models/item.js");
-  //var ItemManager = new ItemFile(mongoose);
-  /*ItemManager.addItem("Test", "Test", ["test"], function(id) {
-    console.log(id);
-  });*/
-
+  console.log("serveur opérationnel");
 }
