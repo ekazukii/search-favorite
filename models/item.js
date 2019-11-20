@@ -34,16 +34,41 @@ module.exports = class Item {
     });
   }
 
-  find(query, callback) {
-    var aggregate = [
-      {$match : { "tags" : { "$in": query.tags}}},
-      {$unwind: "$tags"},
-      {$group: { "_id": {"_id" : "$_id", "url" : "$url", "genre": query.genre, "site": query.site}, "matches":{$sum:1}}},
-      {$sort: {"matches":-1}},
-    ]
-    this.ItemModel.aggregate((aggregate), function(err, result) {
-      if (err) throw err;
-      callback(result);
-    })
+  find(info, callback) {
+    var self = this;
+    if(typeof info.tags !== "undefined") { // Search with tags
+      var match = {$match: { "$and": [ { "tags" :  { "$in": info.tags} } ] } };
+      if (typeof info.genre !== "undefined") {
+        match["$match"]["$and"].push({"genre": info.genre});
+      }
+      if (typeof info.site !== "undefined") {
+        match["$match"]["$and"].push({"site": info.site});
+      }
+      var aggregate = [
+        match,
+        {$unwind: "$tags"},
+        {$group: { "_id": {"_id": "$_id", "genre": "$genre", "site": "$site", "url": "$url"},  "matches":{$sum:1}, "listOfTags": {$push: "$tags"}}},
+        {$sort: {"matches":-1}},
+      ]
+      this.ItemModel.aggregate((aggregate), function(err, result) {
+        if (err) throw err;
+        console.log("recherche avec tags effecuté");
+        callback(result);
+      });
+    } else { // Search without tags
+      var match = {$match: {$and: []}};
+      if (typeof info.genre !== "undefined") {
+        match["$match"]["$and"].push({"genre": info.genre});
+      }
+      if (typeof info.site !== "undefined") {
+        match["$match"]["$and"].push({"site": info.site});
+      }
+      var group = {$group: {"_id": {'_id': "$_id", "genre": "$genre", "site": "$site", "url": "$url"}}}
+      this.ItemModel.aggregate(([match, group]), function(err, result) {
+        if (err) throw err;
+        console.log("recherche sans tags effecuté");
+        callback(result);
+      });
+    }
   }
 }

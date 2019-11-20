@@ -10,30 +10,27 @@ module.exports = function (app) {
   app.get("/search", function(req, res) {
     var query = {};
     var genre = req.query["genre"];
-    if(typeof genre !== "undefined") {
+    if(genre) {
       query.genre = genre;
     }
 
     var site = req.query["site"];
-    if(typeof site !== "undefined") {
+    if(site) {
       query.site = site;
     }
 
     var tags = req.query["tags"];
-    if(typeof tags !== "undefined") {
+    if(tags) {
       query.tags = [tags];
     }
 
-    console.log(query);
-
     ItemManager.find(query, function(result) {
-      console.log(result)
       res.render("search.ejs", {results: result, querys: query});
     })
   })
 
   app.get("/addFav", function(req, res) {
-    res.render('addFav.ejs');
+    res.render('addFav.ejs', {success: false});
   });
 
   app.post('/addFav', function(req, res) {

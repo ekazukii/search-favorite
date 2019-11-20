@@ -4,21 +4,30 @@
     <meta charset="utf-8">
     <title>Resultat de la recherche</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
   </head>
   <body>
-    <form class="form" action="/search" method="get">
-      <label for="genre">Genre : </label>
-      <input type="text" name="genre" value="" id="genre">
+    <div class="container">
+      <h1 class="display-2 center">Recherche de favoris</h1>
+      <hr />
+      <form class="form" action="/search" method="get">
+        <div class="form-group">
+          <label for="genre">Genre : </label>
+          <input type="text" name="genre" value="" id="genre" class="form-control" placeholder="Fun/Cours/Dev/...">
+        </div>
 
-      <label for="site">Site : </label>
-      <input type="text" name="site" value="" id="site">
+        <div class="form-group">
+          <label for="site">Site : </label>
+          <input type="text" name="site" value="" id="site" class="form-control" placeholder="Twitter/Igg/...">
+        </div>
 
-      <label for="tags">Tags : </label>
-      <input type="text" name="tags" value="" id="tags">
+        <div class="form-group">
+          <label for="tags">Tags : </label>
+          <input type="text" name="tags" value="" id="tags" class="form-control" placeholder="Mongo/Node/kny/...">
+        </div>
 
-      <input type="submit" name="submit" value="Valider">
-    </form>
+        <input type="submit" name="submit" value="Valider" class="btn btn-primary">
+      </form>
+    </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

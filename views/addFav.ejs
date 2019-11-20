@@ -9,7 +9,7 @@
     <div class="container">
       <h1 class="display-2 center ">Ajouter un favori</h1>
       <hr/>
-      <% if (success = true) {  %>
+      <% if (success === true) {  %>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           Le favori a bien été ajouté.
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -32,8 +32,8 @@
         </div>
         <div class="form-group">
           <label for="tags">Tags du favori (Séparés par un espace)</label>
-          <input type="text" name="tags" value="" id="tags" class="form-control" placeholder="Twitter/Igg/...">
         </div>
+        <input type="text" name="tags" value="" id="tags" class="form-control" placeholder="Mongo/Node/kny/...">
         <button type="submit" name="button" class="btn btn-primary">Valider</button>
       </form>
     </div>
