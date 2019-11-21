@@ -1,7 +1,7 @@
 "use strict";
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/search-engine', { useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false  }, function(err) {
+mongoose.connect('mongodb://localhost/search-engine?authSource=admin', { useNewUrlParser: true,  useUnifiedTopology: true, useFindAndModify: false, user: process.env.DB_USER, password: process.env.DB_PASS  }, function(err) {
   if (err) { throw err; }
   //console.log("Connecté à la base de données 'search-engine'");
 });
