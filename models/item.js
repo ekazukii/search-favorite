@@ -63,7 +63,7 @@ module.exports = class Item {
       if (typeof info.site !== "undefined") {
         match["$match"]["$and"].push({"site": info.site});
       }
-      var group = {$group: {"_id": {'_id': "$_id", "genre": "$genre", "site": "$site", "url": "$url"}}}
+      var group = {$group: {"_id": {'_id': "$_id", "genre": "$genre", "site": "$site", "url": "$url"}, "listOfTags": {$first: "$tags"}}}
       this.ItemModel.aggregate(([match, group]), function(err, result) {
         if (err) throw err;
         console.log("recherche sans tags effecuté");
