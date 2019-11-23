@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="public/css/search.css"
+    <link rel="stylesheet" href="public/css/search.css">
   </head>
+  <%- include('header'); -%>
   <body class="">
     <div class="container">
       <h1 class="display-2 center">Resultat de la recherche</h1>
@@ -24,7 +25,7 @@
           <td><%= results[result]['_id'].genre %></td>
           <td><%= results[result]['_id'].site %></td>
           <td><%= results[result].listOfTags %></td>
-          <td><a href="<%= results[result]['_id'].url %>" target="_blank"><%= results[result]['_id'].site %></a></td>
+          <td><a href="<%= decodeURI(results[result]['_id'].url) %>" target="_blank"><%= results[result]['_id'].site %></a></td>
         </tr>
         <% } %>
       </table>

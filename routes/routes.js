@@ -21,12 +21,26 @@ module.exports = function (app) {
 
     var tags = req.query["tags"];
     if(tags) {
-      query.tags = [tags];
+      var tagsArray = query.tags.split(' ');
+      query.tags = tagsArray;
     }
 
     ItemManager.find(query, function(result) {
       res.render("search.ejs", {results: result, querys: query});
     })
+  })
+
+  app.get('/searchTags', function(req, res) {
+    var tags = req.query["tags"];
+    if(tags) {
+      var tagsArray = tags.split(' ');
+      var query = {tags: tagsArray};
+      ItemManager.find(query, function(result) {
+        res.render("search.ejs", {results: result, querys: query});
+      })
+    } else {
+      res.render('index.ejs')
+    }
   })
 
   app.get("/addFav", function(req, res) {

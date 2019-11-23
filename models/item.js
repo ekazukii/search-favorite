@@ -20,7 +20,8 @@ module.exports = class Item {
   }
 
   addItem(value, callback) {
-    var newItem = new this.ItemModel({ genre : value.genre, site: value.site, tags: value.tags, url: value.url });
+    var url = encodeURI(value.url)
+    var newItem = new this.ItemModel({ genre : value.genre, site: value.site, tags: value.tags, url: url });
     newItem.save(function(err, room) {
       if (err) throw err;
       callback(room.id)
