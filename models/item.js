@@ -36,7 +36,6 @@ module.exports = class Item {
   }
 
   find(info, callback) {
-    var self = this;
     if(typeof info.tags !== "undefined") { // Search with tags
       var match = {$match: { "$and": [ { "tags" :  { "$in": info.tags} } ] } };
       if (typeof info.genre !== "undefined") {

@@ -19,6 +19,7 @@
           <th>Site</th>
           <th>Tags</th>
           <th>Url</th>
+          <th>Supp</th>
         </thead>
         <% for (var result in results) { %>
         <tr>
@@ -26,6 +27,7 @@
           <td><%= results[result]['_id'].site %></td>
           <td><%= results[result].listOfTags %></td>
           <td><a href="<%= decodeURI(results[result]['_id'].url) %>" target="_blank"><%= results[result]['_id'].site %></a></td>
+          <td><a href="/deleteFav/<%= results[result]['_id']._id %>">supprimer le fav</a></td>
         </tr>
         <% } %>
       </table>

@@ -48,7 +48,7 @@ module.exports = function (app) {
   });
 
   app.post('/addFav', function(req, res) {
-    var url = req.body.url;
+    var url = encodeURI(req.body.url);
     var genre = req.body.genre;
     var site = req.body.site;
     var tags = req.body.tags;
@@ -60,6 +60,16 @@ module.exports = function (app) {
       ItemManager.addItem(values, function(id) {
         console.log('Un site a été ajouté id: '+id);
         res.render('addFav.ejs', {success: true})
+      })
+    }
+  });
+
+  app.get("/deleteFav/:id", function(req, res) {
+    var id = req.params["id"];
+    if (id && typeof id !== "undefined") {
+      ItemManager.removeItem(id, function() {
+        var backURL=req.header('Referer') || '/';
+        res.redirect(backURL);
       })
     }
   });
