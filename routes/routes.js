@@ -21,7 +21,7 @@ module.exports = function (app) {
 
     var tags = req.query["tags"];
     if(tags) {
-      var tagsArray = query.tags.split(' ');
+      var tagsArray = tags.split(' ');
       query.tags = tagsArray;
     }
 
