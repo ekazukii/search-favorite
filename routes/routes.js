@@ -73,4 +73,55 @@ module.exports = function (app) {
       })
     }
   });
+
+  app.get("/api/favorite/", function(req, res) {
+    console.log(req.query)
+    var query = {};
+    var genre = req.query["genre"];
+    if(genre) {
+      query.genre = genre;
+    }
+
+    var site = req.query["site"];
+    if(site) {
+      query.site = site;
+    }
+
+    var tags = req.query["tags"];
+    if(tags) {
+      var tagsArray = tags.split(' ');
+      query.tags = tagsArray;
+    }
+
+    console.log(query)
+    ItemManager.find(query, function(result) {
+      res.json({results: result, querys: query})
+    })
+  });
+
+  app.post("/api/favorite/", function(req, res) {
+    var url = encodeURI(req.query.url);
+    var genre = req.query.genre;
+    var site = req.query.site;
+    var tags = req.query.tags;
+
+    if (url && genre && site && tags)
+    {
+      var tagsArray = tags.split(' ');
+      var values = {url: url, genre: genre, site: site, tags: tagsArray}
+      ItemManager.addItem(values, function(id) {
+        console.log('Un site a été ajouté id: '+id);
+        res.json({success: true})
+      });
+    }
+  });
+
+  app.delete("/api/favorite/:id", function(req, res) {
+    var id = req.params["id"];
+    if (id && typeof id !== "undefined") {
+      ItemManager.removeItem(id, function() {
+        res.json({success: true});
+      })
+    }
+  });
 }
