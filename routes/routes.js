@@ -122,4 +122,13 @@ module.exports = function (app) {
       })
     }
   });
+
+  app.get("/goto/:id", function(req, res) {
+    var id = req.params["id"];
+    if (id && typeof id !== "undefined") {
+      ItemManager.addClick(id, function(response) {
+        res.redirect(response.url)
+      })
+    }
+  })
 }
