@@ -1,0 +1,48 @@
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+  label {
+    /* Other styling... */
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-right:1em;
+    width: auto;
+    font-size: 30px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .form-group {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10%;
+  }
+
+  .container {
+    max-width: 90%;
+  }
+
+  .search-form .form-control {
+    width: 80%;
+    height: 4em;
+  }
+
+  .search-form .btn-form {
+    text-align: center;
+  }
+
+  .search-form .btn {
+    width: 8em;
+    height: 4em;
+  }
+
+  .hr {
+    margin-bottom: 8rem;
+  }
+}

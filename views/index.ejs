@@ -4,13 +4,15 @@
     <meta charset="utf-8">
     <title>Resultat de la recherche</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5">
   </head>
   <body>
     <%- include('header'); -%>
     <div class="container">
       <h1 class="display-2 center">Recherche de favoris</h1>
-      <hr />
-      <form class="form" action="/search" method="get">
+      <hr class="hr"/>
+      <form class="form search-form" action="/search" method="get">
         <div class="form-group">
           <label for="genre">Genre : </label>
           <input type="text" name="genre" value="" id="genre" class="form-control" placeholder="Fun/Cours/Dev/...">
@@ -25,8 +27,9 @@
           <label for="tags">Tags : </label>
           <input type="text" name="tags" value="" id="tags" class="form-control" placeholder="Mongo/Node/kny/...">
         </div>
-
-        <input type="submit" name="submit" value="Valider" class="btn btn-primary">
+        <div class="btn-form">
+          <input type="submit" name="submit" value="Valider" class="btn btn-primary">
+        </div>
       </form>
     </div>
   </body>

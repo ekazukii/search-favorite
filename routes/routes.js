@@ -75,7 +75,6 @@ module.exports = function (app) {
   });
 
   app.get("/api/favorite/", function(req, res) {
-    console.log(req.query)
     var query = {};
     var genre = req.query["genre"];
     if(genre) {
@@ -93,7 +92,6 @@ module.exports = function (app) {
       query.tags = tagsArray;
     }
 
-    console.log(query)
     ItemManager.find(query, function(result) {
       res.json({results: result, querys: query})
     })
